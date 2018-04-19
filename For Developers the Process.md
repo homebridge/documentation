@@ -1,9 +1,13 @@
-# The Process
-* Currently the workflow will look something like this, the plugin repo will be transfered to the Homebridge organization and you will retain ownership permissions on the repo. If you wish to remain active you can still merge PRs update documentation publish updates,etc. However before merging PRs we are asking for you to run just the plugin in a homebridge instances with no other plugin for a time period of 3 days. If a complete rewrite of a component took place we ask that you run for 7 days without errors. 
-## publishing to NPM:
-* We have created a NPM organization titled "Homebridge", we will be granting trusted active plugin developers and the mod team to publish NPM packages.
+# Plugin Publishing Process
 
-  
-# Transferring to the new system:
-* During the Alpha phase to be eligible we are asking that you create a config.schema.json file that @Oznu can then use to create some a prompted setup process via his Config-UI-X plugin. For more information on how to create this file check out the Schema.md.
-* This is a trial run so requirements will eventually be tightened further.... When the time comes an announcement will be made and a grace period of 21 days will be granted to participating developers to conform with the new standards(This grace period will go into affect once we leave alpha. For developers participating during alpha its a learning process and we thank you for bearing with us as we take feedback and adjust accordingly) 
+1 - Transfering plugin to the github HomeBridge organization
+
+Once you feel that your plugin is complete, and ready to join the organization, we will transfer the repository to the homebridge organization.  We will then setup yourself as the author as the "owner" of the transferred repository, giving yourself full access and control of it.
+
+2 - Publishing to NPM under the HomeBridge organization
+
+Before publishing to NPM, we are looking at some sort of regression testing process to determine if the plugin is well behaved enough for publishing.  Once it has passed, it will published to NPM under the "HomeBridge" NPM account.  Details of the regression testing are TBD at this time.
+
+3 - Ongoing Maintenance of your plugin
+
+Ongoing management and maintenance of your plugin would stay with yourself as the author, but the wider community would be available for consulting on best practices for plugin coding, documentation and other topics.
