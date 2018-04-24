@@ -4,9 +4,15 @@
 
 Once you feel that your plugin is complete, and ready to join the organization, we will add yourself as the plugin author to the "Plugin Developers" team. Then you can transfer your plugin to the homebridge organization.
 
-1.1 - Homebridge Management - Add plugin author to "Plugin Developers" team
-1.2 - Plugin Author         - From the github page of your repository, select Settings -> Transfer.  Complete the form and for the organization name enter "homebridge"
-1.3 - Plugin Author         - Your plugin is now transfered to the "Homebridge" organzation. You should be able to now repoint your development environment and repositories to the transfered repository.
+1.1 Request to be added to the "Plugin Developers" by selecting "Request to join" on this page
+
+https://github.com/orgs/homebridge/teams/plugin-developers/members
+
+1.2 From the github page of your repository, select Settings -> Transfer.  Complete the form and for the organization name enter "homebridge".
+
+1.3 As part of transfering, select the "Plugin Developers" team.
+
+1.4 Your plugin is now transfered to the "Homebridge" organzation. You should be able to now repoint your development environment and repositories to the transfered repository.
 
 2 - Publishing to NPM under the HomeBridge organization
 
