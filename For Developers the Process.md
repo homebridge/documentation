@@ -16,7 +16,38 @@ https://github.com/orgs/homebridge/teams/plugin-developers/members
 
 2 - Publishing to NPM under the HomeBridge organization
 
-Before publishing to NPM, we are looking at some sort of regression testing process to determine if the plugin is well behaved enough for publishing.  Once it has passed, it will published to NPM under the "HomeBridge" NPM account.  Details of the regression testing are TBD at this time.
+2.1 - Changes to your package.json
+
+- Name of your plugin needs to included the NPM org Homebridge
+```
+"name": "@homebridge/homebridge-mcuiot",
+```
+
+- URL's the repository, bugs and README should be updated to point to the homebridge github account
+```
+"url": "git+https://github.com/homebridge/homebridge-mcuiot.git"
+```
+
+2.2 - Before publishing to NPM, we are looking at some sort of regression testing process to determine if the plugin is well behaved enough for publishing.  Once it has passed, it will published to NPM under the "HomeBridge" NPM account.  Details of the regression testing are TBD at this time.
+
+Sample publishing script - publish.sh
+```
+if ~/npm/bin/nsp check --filter 2; then
+  git add .
+  git commit -m "$1"
+  npm version patch
+  git push origin master --tags
+  npm publish --access public
+else
+	echo "Not publishing due to security vulnerabilites"
+fi
+```
+
+And publish with
+
+```
+./publish.sh "Bugfix"
+```
 
 3 - Ongoing Maintenance of your plugin
 
