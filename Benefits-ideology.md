@@ -16,7 +16,7 @@ We have several main reasons to why we are switching central hub for the Homebri
 
 3. Usability. As part of this "certification process" we will be ensuring that the plugin has under gone certain "stress testing" as well as imposing new guidelines such as support dynamic platforms.
 
-4. The much coveted guided setup process with GUI. Many people have asked for an easier way to setup Homebridge, with this deployment system we will have developers create a 'config.schema.json' that @oznu's Config-UI-X will read and give the user a prompted setup process to enter all the required credentials and finish the setup process.
+4. The much coveted guided setup process with GUI. Many people have asked for an easier way to setup Homebridge, with this deployment system we will have developers create a 'config.schema.json' that @oznu's Config-UI-X will read and give the user a prompted setup process to enter all the required credentials and finish the setup process. By requiring a changelog.md to be included it will allow an easy to view changelog without having to visit individual Github repos to check the commit notes.
 
 # Why Discord?
 * As some of you long time users might have noticed we have had a lot of people join Slack since this project started, as we don't make any money of this project we operate with the Free Tier on Slack. This limits us to X amount of messages which can become somewhat annoying when you go to look for a message in your history from a month ago to find out it's delted.
