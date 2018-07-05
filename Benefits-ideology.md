@@ -10,13 +10,11 @@ We have several main reasons to why we are switching central hub for the Homebri
 
 # The Benefits
 
-~~1. With this setup in place there will always be someone on the other end who is active that can merge your PR and close issues etc. Hopefully with more closed issues, the greater number of people use moderators can get to help other people.~~
+1. Stability, in the community we will be ensuring that plugins are being actively supported and managed by 'maintainers'.  And plugins no longer functional or supported, will be deprecated and dropped from the community.
 
-2. Stability, in the community we will be ensuring that plugins are being actively supported and managed by 'maintainers'.  And plugins no longer functional or supported, will be deprecated and dropped from the community.
+2. Usability. As part of this "certification process" we will be ensuring that the plugin has under gone certain "stress testing" as well as imposing new guidelines such as support dynamic platforms.
 
-3. Usability. As part of this "certification process" we will be ensuring that the plugin has under gone certain "stress testing" as well as imposing new guidelines such as support dynamic platforms.
-
-4. The much coveted guided setup process with GUI. Many people have asked for an easier way to setup Homebridge, with this deployment system we will have developers create a 'config.schema.json' that @oznu's Config-UI-X will read and give the user a prompted setup process to enter all the required credentials and finish the setup process. By requiring a changelog.md to be included it will allow an easy to view changelog without having to visit individual Github repos to check the commit notes.
+3. The much coveted guided setup process with GUI. Many people have asked for an easier way to setup Homebridge, with this deployment system we will have developers create a 'config.schema.json' that @oznu's Config-UI-X will read and give the user a prompted setup process to enter all the required credentials and finish the setup process. By requiring a changelog.md to be included it will allow an easy to view changelog without having to visit individual Github repos to check the commit notes.
 
 # Why Discord?
 * As some of you long time users might have noticed we have had a lot of people join Slack since this project started, as we don't make any money of this project we operate with the Free Tier on Slack. This limits us to X amount of messages which can become somewhat annoying when you go to look for a message in your history from a month ago to find out it's delted.
