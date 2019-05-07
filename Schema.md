@@ -8,6 +8,7 @@ Plugin authors should create a `config.schema.json` which defines the config the
 {
   "pluginAlias": "Camera-ffmpeg",
   "pluginType": "platform",
+  "singular": false,
   "headerDisplay": "Optional content to display above the plugin config. Supports markdown.",
   "footerDisplay": "Optional content to display below the plugin config. Supports markdown.",
   "schema": {
@@ -27,6 +28,7 @@ Plugin authors should create a `config.schema.json` which defines the config the
 
 * `pluginAlias`: The plugin identifier.
 * `pluginType`: The type of plugin, valid values are `platform` or `accessory`.
+* `singular`: If set to `true` the UI will not allow the user to add more than one config block.
 * `headerDisplay` and `footerDisplay`: [See Below](#header-and-footer-display) for details.
 * `form` and `display`: These attributes are optional and can be used to further customise how the interface is presented to the user, see the playground for examples.
 
