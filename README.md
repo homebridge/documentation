@@ -1,20 +1,20 @@
 # Homebridge Documentation
 
-This repository will eventually contain plugin development documentation for Homebridge.
-
 ### Installation guides and troubleshooting:
 
 * [Homebridge Wiki](https://github.com/homebridge/homebridge/wiki)
 
 ### Plugin Developers
 
-The Verified By Homebridge program allows plugin developers to get their plugins reviewed and endorsed by the Homebridge project team:
-
-* [Verified By Homebridge](https://github.com/homebridge/verified)
+* [Plugin API Documentation](https://developers.homebridge.io/)
 
 Full documentation for the Homebridge Plugins Settings GUI schema can be found here:
 
-* [Homebridge Plugin Settings GUI Documentation](https://github.com/oznu/homebridge-config-ui-x/wiki/Developers%3A-Plugin-Settings-GUI)
+* [Homebridge Plugin Settings GUI Documentation](https://developers.homebridge.io/#/config-schema)
+
+The Verified By Homebridge program allows plugin developers to get their plugins reviewed and endorsed by the Homebridge project team:
+
+* [Verified By Homebridge](https://github.com/homebridge/verified)
 
 ### Community
 
