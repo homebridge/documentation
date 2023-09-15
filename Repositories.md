@@ -36,13 +36,15 @@
 | [unmaintained-plugins](https://github.com/homebridge/unmaintained-plugins) |
 | [.github](https://github.com/homebridge/.github) |
 
-#Images and Containers
+# Images and Containers
 
-| Repository | Status | Publish Instructions | Dependencies
+| Repository | Status | Publish Instructions | Unique Dependencies*
 |-|-|-|-|
-| [homebridge-raspbian-image](https://github.com/homebridge/homebridge-raspbian-image) | | Uses github self-hosted runner<br>On your local copy of the repo<BR>`git tag -a v1.0.40 -m 'Transfer to Homebridge and Refresh Image'`<BR>`git push origin --tags`<br>A pre-release draft will be created that needs the Release description populated.<br>Copy rpi-image-repo.json to https://github.com/homebridge/homebridge.io/src/public/rpi-image-repo.json | HAP-NodeJS / Homebridge<BR>config-ui-x |
-| [docker-homebridge](https://github.com/homebridge/docker-homebridge) || Push code to the repository | HAP-NodeJS / Homebridge<BR>config-ui-x<BR>raspbian-image<BR>ffmpeg-for-homebridge |
-| [homebridge-syno-spk](https://github.com/homebridge/homebridge-syno-spk) | | Github Action - Build and Deploy Packages| HAP-NodeJS / Homebridge<BR>config-ui-x |
-| [homebridge-apt-pkg](https://github.com/homebridge/homebridge-apt-pkg) | | Github Action - Build and Deploy Packages| HAP-NodeJS / Homebridge<BR>config-ui-x |
+| [homebridge-raspbian-image](https://github.com/homebridge/homebridge-raspbian-image) | | Uses github self-hosted runner<br>On your local copy of the repo<BR>`git tag -a v1.0.40 -m 'Transfer to Homebridge and Refresh Image'`<BR>`git push origin --tags`<br>A pre-release draft will be created that needs the Release description populated.<br>Copy rpi-image-repo.json to https://github.com/homebridge/homebridge.io/src/public/rpi-image-repo.json | 
+| [docker-homebridge](https://github.com/homebridge/docker-homebridge) || Push code to the repository | * raspbian-image<BR>* ffmpeg-for-homebridge |
+| [homebridge-syno-spk](https://github.com/homebridge/homebridge-syno-spk) | | Github Action - Build and Deploy Packages| 
+| [homebridge-apt-pkg](https://github.com/homebridge/homebridge-apt-pkg) | | Github Action - Build and Deploy Packages| 
 | [homebridge-macos-pkg](https://github.com/homebridge/homebridge-macos-pkg) | Work in progress
 | [homebridge-vm-image](https://github.com/homebridge/homebridge-vm-image) | Outdated
+
+* Please note, all images and containers are dependant on HAP-NodeJS / Homebridge and config-ui-x
