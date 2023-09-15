@@ -1,7 +1,7 @@
 # Homebridge Repositories
 
 | Repository | Status | Publish Instructions |
-|------------|-------------|-------------|-------------|-------------|
+|------------|-------------|-------------|
 | **Main Packages** 
 | [HAP-NodeJS](https://github.com/homebridge/HAP-NodeJS) |
 | [homebridge](https://github.com/homebridge/homebridge) |
@@ -39,7 +39,7 @@
 #Images and Containers
 
 | Repository | Status | Publish Instructions | Dependencies
-|-|-|-|-|-|-|-|
+|-|-|-|-|
 | [homebridge-raspbian-image](https://github.com/homebridge/homebridge-raspbian-image) | | Uses github self-hosted runner<br>On your local copy of the repo<BR>`git tag -a v1.0.40 -m 'Transfer to Homebridge and Refresh Image'`<BR>`git push origin --tags`<br>A pre-release draft will be created that needs the Release description populated.<br>Copy rpi-image-repo.json to https://github.com/homebridge/homebridge.io/src/public/rpi-image-repo.json | HAP-NodeJS / Homebridge<BR>config-ui-x |
 | [docker-homebridge](https://github.com/homebridge/docker-homebridge) || Push code to the repository | HAP-NodeJS / Homebridge<BR>config-ui-x<BR>raspbian-image<BR>ffmpeg-for-homebridge |
 | [homebridge-syno-spk](https://github.com/homebridge/homebridge-syno-spk) | | Github Action - Build and Deploy Packages| HAP-NodeJS / Homebridge<BR>config-ui-x |
