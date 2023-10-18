@@ -19,6 +19,8 @@
 | [long.js](https://github.com/homebridge/long.js) |
 | [node_mdns](https://github.com/homebridge/node_mdns) |
 | [put](https://github.com/homebridge/put) |
+| [node-pty-prebuilt-multiarch](https://github.com/homebridge/node-pty-prebuilt-multiarch)| | [Build Instructions](https://github.com/homebridge/node-pty-prebuilt-multiarch#build--package)
+| [nssm](https://github.com/homebridge/nssm) ||
 | **Examples and Templates**
 | [HAP-NodeJS-examples](https://github.com/homebridge/HAP-NodeJS-examples) |
 | [homebridge-examples](https://github.com/homebridge/homebridge-examples) |
@@ -43,7 +45,7 @@
 | [homebridge-raspbian-image](https://github.com/homebridge/homebridge-raspbian-image) | | Uses github self-hosted runner<br>On your local copy of the repo<BR>`git tag -a v1.0.40 -m 'Transfer to Homebridge and Refresh Image'`<BR>`git push origin --tags`<br>A pre-release draft will be created that needs the Release description populated.<br>Copy rpi-image-repo.json to https://github.com/homebridge/homebridge.io/src/public/rpi-image-repo.json | 
 | [docker-homebridge](https://github.com/homebridge/docker-homebridge) || Push code to the repository | * raspbian-image<BR>* ffmpeg-for-homebridge |
 | [homebridge-syno-spk](https://github.com/homebridge/homebridge-syno-spk) | | Github Action - Build and Deploy Packages| 
-| [homebridge-apt-pkg](https://github.com/homebridge/homebridge-apt-pkg) | | Github Action - Build and Deploy Packages| 
+| [homebridge-apt-pkg](https://github.com/homebridge/homebridge-apt-pkg) | | Github Action - Build and Deploy Packages <BR>Note: Version number must not contain a v, ie `1.1.0` and not `v1.1.0`| 
 | [homebridge-macos-pkg](https://github.com/homebridge/homebridge-macos-pkg) | Work in progress
 | [homebridge-vm-image](https://github.com/homebridge/homebridge-vm-image) | Outdated
 
