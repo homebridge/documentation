@@ -5,7 +5,7 @@
 | **Main Packages** 
 | [HAP-NodeJS](https://github.com/homebridge/HAP-NodeJS) |
 | [homebridge](https://github.com/homebridge/homebridge) |
-| [homebridge-config-ui-x](https://github.com/homebridge/homebridge-config-ui-x) | | 1 - Merge pull request to latest<BR>2 - Wait for tests to complete<BR>3 - Update Release Draft to Released<BR>4 - Run github action `Node Release` |
+| [homebridge-config-ui-x](https://github.com/homebridge/homebridge-config-ui-x) | | 1 - Merge pull request to latest<BR>2 - Wait for tests to complete<BR>3 - Update Release Draft to Released adn remove V from the TAG<BR>4 - Run github action `Node Release` |
 | **Supporting Packages** 
 | [bonjour](https://github.com/homebridge/bonjour) |
 | [fast-srp](https://github.com/homebridge/fast-srp) |
