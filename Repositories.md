@@ -5,7 +5,7 @@
 | **Main Packages** 
 | [HAP-NodeJS](https://github.com/homebridge/HAP-NodeJS) |
 | [homebridge](https://github.com/homebridge/homebridge) |
-| [homebridge-config-ui-x](https://github.com/homebridge/homebridge-config-ui-x) | | 1 - Merge pull request to latest<BR>2 - Wait for tests to complete<BR>3 - Update Release Draft to Released and remove V from the TAG<BR>4 - Run github action `Node Release` |
+| [homebridge-config-ui-x](https://github.com/homebridge/homebridge-config-ui-x) | | 1 - Merge pull request to latest<BR>2 - Wait for tests to complete<BR>3 - Update Release Draft to Released and remove V from the TAG<BR>4 - Run github action `Node Release`<BR><BR><B>Attaching Artifacts to a beta release</B><BR>1 - Create a Release with a TAG like `4.52.0-beta.49`, needs to match the beta NPM version.<BR>2 - Run github action `Manually Attach Artifacts` from the Beta branch and with a TAG like `4.52.0-beta.49` |
 | **Supporting Packages** 
 | [bonjour](https://github.com/homebridge/bonjour) |
 | [fast-srp](https://github.com/homebridge/fast-srp) |
