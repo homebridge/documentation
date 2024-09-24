@@ -190,6 +190,25 @@ function generateSummaryReportByCompatibleCount(plugins) {
   return reportContent;
 }
 
+function generateFinalSummaryReport(plugins) {
+  const totalPlugins = plugins.length;
+  let compatibleCount = 0;
+
+  plugins.forEach(plugin => {
+      const homebridgeVersion = plugin.engines.homebridge || "0.0.0";
+      if (isHomebridgeCompatible(plugin) === 'supported') {
+        compatibleCount += 1;
+      }
+  });
+
+  let reportContent = `# Final Summary Report\n\n`;
+  reportContent += `| Total Plugins | Compatible Plugins |\n`;
+  reportContent += `|----------------|--------------------|\n`;
+  reportContent += `| ${totalPlugins} | ${compatibleCount} |\n`;
+
+  return reportContent;
+}
+
 
 // Main function to read data and generate Markdown
 async function readAndGenerateMarkdown() {
@@ -220,6 +239,11 @@ async function readAndGenerateMarkdown() {
   const summaryReportByCompatibleCount = generateSummaryReportByCompatibleCount(plugins);
   fs.writeFileSync('../homebridge_plugins_summary_by_compatible_count.md', summaryReportByCompatibleCount);
   console.log('Summary report by compatible count created: homebridge_plugins_summary_by_compatible_count.md');
+
+  // Generate final summary report
+  const finalSummaryReport = generateFinalSummaryReport(plugins);
+  fs.writeFileSync('../homebridge_plugins_final_summary.md', finalSummaryReport);
+  console.log('Final summary report created: homebridge_plugins_final_summary.md');
 }
 
 readAndGenerateMarkdown();
