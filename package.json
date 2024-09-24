@@ -1,0 +1,16 @@
+{
+  "name": "documentation",
+  "version": "1.0.0",
+  "description": "### Installation guides and troubleshooting:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "semver": "^7.6.3"
+  },
+  "type": "module"
+}

@@ -1,0 +1,143 @@
+[
+  {
+    "name": "homebridge-zigbee-nt",
+    "description": "ZigBee New Technology Platform plugin for HomeBridge",
+    "version": "2.6.2",
+    "maintainers": [
+      "madchicken"
+    ],
+    "engines": {
+      "homebridge": ">=1.1.0",
+      "node": ">=12.13.0"
+    },
+    "created": "2020-06-13T15:58:08.656Z",
+    "lastUpdated": "2024-08-31T15:20:55.659Z"
+  },
+  {
+    "name": "homebridge-melcloud-control",
+    "description": "Homebridge plugin to control Mitsubishi Air Conditioner, Heat Pump and Energy Recovery Ventilation.",
+    "version": "3.3.17",
+    "maintainers": [
+      "grzegorz914"
+    ],
+    "engines": {
+      "homebridge": "^1.6.0 || ^2.0.0-beta.0",
+      "node": "^18.20.4 || ^20.15.1 || ^22.7.0"
+    },
+    "created": "2022-06-16T15:41:55.078Z",
+    "lastUpdated": "2024-09-24T12:46:59.648Z"
+  },
+  {
+    "name": "homebridge-unifi-protect",
+    "description": "Homebridge UniFi Protect plugin providing complete HomeKit integration for the UniFi Protect ecosystem with full support for most features including autoconfiguration, motion detection, multiple controllers, and realtime updates.",
+    "version": "7.4.0",
+    "maintainers": [
+      "hjdhjd"
+    ],
+    "engines": {
+      "homebridge": ">=1.8.0 || >=2.0.0",
+      "node": ">=18"
+    },
+    "created": "2018-09-24T03:52:17.489Z",
+    "lastUpdated": "2024-09-23T02:38:19.060Z"
+  },
+  {
+    "name": "homebridge-xbox-tv",
+    "description": "Homebridge plugin to control Xbox game consoles.",
+    "version": "3.1.11",
+    "maintainers": [
+      "grzegorz914"
+    ],
+    "engines": {
+      "homebridge": "^1.6.0 || ^2.0.0-beta.0",
+      "node": "^18.20.4 || ^20.15.1 || ^22.7.0"
+    },
+    "created": "2020-02-05T18:09:08.273Z",
+    "lastUpdated": "2024-09-13T04:52:30.836Z"
+  },
+  {
+    "name": "homebridge-panasonic-ac-platform",
+    "description": "Homebridge platform plugin providing HomeKit support for Panasonic Comfort Cloud devices.",
+    "version": "5.0.0",
+    "maintainers": [
+      "embee8",
+      "jandersonhill"
+    ],
+    "engines": {
+      "homebridge": "^1.6.0 || ^2.0.0",
+      "node": "^18.20.4 || ^20.15.1"
+    },
+    "created": "2021-12-23T00:06:36.927Z",
+    "lastUpdated": "2024-08-27T05:51:24.266Z"
+  },
+  {
+    "name": "homebridge-infraspec-ui",
+    "description": "User Interface for RTSP capable cameras with HSV support.",
+    "version": "1.159.0",
+    "maintainers": [
+      "ladellerby"
+    ],
+    "engines": {
+      "node": ">=14.18.2",
+      "homebridge": "^1.4.0"
+    },
+    "created": "2022-08-19T19:43:10.822Z",
+    "lastUpdated": "2024-05-03T22:12:15.703Z"
+  },
+  {
+    "name": "homebridge-plejd",
+    "description": "HomeKit support for the Plejd BLE platform using Homebridge",
+    "version": "1.5.1",
+    "maintainers": [
+      "herlix"
+    ],
+    "engines": {
+      "node": ">=18.20.4",
+      "homebridge": "^1.8.0 || ^2.0.0-beta.0"
+    },
+    "created": "2022-02-21T09:40:52.398Z",
+    "lastUpdated": "2024-09-24T16:44:09.607Z"
+  },
+  {
+    "name": "homebridge-ring",
+    "description": "Homebridge plugin for Ring doorbells, cameras, security alarm system and smart lighting",
+    "version": "13.1.0",
+    "maintainers": [
+      "dustin.greif"
+    ],
+    "engines": {
+      "node": "^18 || ^20",
+      "homebridge": ">=1.4.0"
+    },
+    "created": "2018-08-11T11:36:54.475Z",
+    "lastUpdated": "2024-08-13T01:59:41.576Z"
+  },
+  {
+    "name": "homebridge-unifi-poe-control",
+    "description": "UniFi PoE Control for Homebridge",
+    "version": "1.3.1",
+    "maintainers": [
+      "kienzle_s"
+    ],
+    "engines": {
+      "node": ">=16.13.0",
+      "homebridge": "^1.6.0 || ^2.0.0-beta.0"
+    },
+    "created": "2021-11-29T09:16:14.401Z",
+    "lastUpdated": "2024-08-22T12:41:36.909Z"
+  },
+  {
+    "name": "homebridge-xfinityhome",
+    "description": "A homebridge plugin to control your Xfinity Home security system.",
+    "version": "3.5.1",
+    "maintainers": [
+      "bloomkd46"
+    ],
+    "engines": {
+      "node": ">=14.18.1",
+      "homebridge": ">=1.3.5"
+    },
+    "created": "2022-04-27T00:36:39.460Z",
+    "lastUpdated": "2024-07-14T22:31:20.131Z"
+  }
+]
