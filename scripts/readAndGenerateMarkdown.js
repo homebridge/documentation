@@ -66,16 +66,130 @@ function generateSummaryReport(plugins) {
     });
   });
 
+  // Create an array from the summary object and sort by maintainer name
+  const sortedSummary = Object.entries(summary).sort(([maintainerA], [maintainerB]) => {
+    return maintainerA.localeCompare(maintainerB);
+  });
+
   let reportContent = `# Summary Report by Maintainer\n\n`;
   reportContent += `| Maintainer | Total Plugins | Homebridge 2.0 Ready |\n`;
   reportContent += `|-------------|---------------|-------------------|\n`;
 
-  for (const maintainer in summary) {
-    reportContent += `| ${maintainer} | ${summary[maintainer].pluginCount} | ${summary[maintainer].compatibleCount} |\n`;
-  }
+  sortedSummary.forEach(([maintainer, counts]) => {
+    reportContent += `| ${maintainer} | ${counts.pluginCount} | ${counts.compatibleCount} |\n`;
+  });
 
   return reportContent;
 }
+
+// Generate summary report sorted by maintainer
+function generateSummaryReportByMaintainer(plugins) {
+  const summary = {};
+
+  plugins.forEach(plugin => {
+      plugin.maintainers.forEach(maintainer => {
+          if (!summary[maintainer]) {
+              summary[maintainer] = {
+                  pluginCount: 0,
+                  compatibleCount: 0,
+              };
+          }
+          summary[maintainer].pluginCount += 1;
+
+          if (isHomebridgeCompatible(plugin) === 'supported') {
+            summary[maintainer].compatibleCount += 1;
+          }
+      });
+  });
+
+  // Create an array from the summary object and sort by maintainer name
+  const sortedSummary = Object.entries(summary).sort(([maintainerA], [maintainerB]) => {
+      return maintainerA.localeCompare(maintainerB);
+  });
+
+  let reportContent = `# Summary Report by Maintainer\n\n`;
+  reportContent += `| Maintainer | Total Plugins | Homebridge 2.0 Ready |\n`;
+  reportContent += `|-------------|---------------|-------------------|\n`;
+
+  sortedSummary.forEach(([maintainer, counts]) => {
+      reportContent += `| ${maintainer} | ${counts.pluginCount} | ${counts.compatibleCount} |\n`;
+  });
+
+  return reportContent;
+}
+
+// Generate summary report sorted by plugin count
+function generateSummaryReportByPluginCount(plugins) {
+  const summary = {};
+
+  plugins.forEach(plugin => {
+      plugin.maintainers.forEach(maintainer => {
+          if (!summary[maintainer]) {
+              summary[maintainer] = {
+                  pluginCount: 0,
+                  compatibleCount: 0,
+              };
+          }
+          summary[maintainer].pluginCount += 1;
+
+          if (isHomebridgeCompatible(plugin) === 'supported') {
+            summary[maintainer].compatibleCount += 1;
+          }
+      });
+  });
+
+  // Create an array from the summary object and sort by plugin count (descending)
+  const sortedSummary = Object.entries(summary).sort(([, countsA], [, countsB]) => {
+      return countsB.pluginCount - countsA.pluginCount;
+  });
+
+  let reportContent = `# Summary Report by Plugin Count\n\n`;
+  reportContent += `| Maintainer | Total Plugins | Homebridge 2.0 Ready |\n`;
+  reportContent += `|-------------|---------------|-------------------|\n`;
+
+  sortedSummary.forEach(([maintainer, counts]) => {
+      reportContent += `| ${maintainer} | ${counts.pluginCount} | ${counts.compatibleCount} |\n`;
+  });
+
+  return reportContent;
+}
+
+// Generate summary report sorted by compatible count
+function generateSummaryReportByCompatibleCount(plugins) {
+  const summary = {};
+
+  plugins.forEach(plugin => {
+      plugin.maintainers.forEach(maintainer => {
+          if (!summary[maintainer]) {
+              summary[maintainer] = {
+                  pluginCount: 0,
+                  compatibleCount: 0,
+              };
+          }
+          summary[maintainer].pluginCount += 1;
+
+          if (isHomebridgeCompatible(plugin) === 'supported') {
+            summary[maintainer].compatibleCount += 1;
+          }
+      });
+  });
+
+  // Create an array from the summary object and sort by compatible count (descending)
+  const sortedSummary = Object.entries(summary).sort(([, countsA], [, countsB]) => {
+      return countsB.compatibleCount - countsA.compatibleCount;
+  });
+
+  let reportContent = `# Summary Report by Homebridge 2.0 Ready Count\n\n`;
+  reportContent += `| Maintainer | Total Plugins | Homebridge 2.0 Ready |\n`;
+  reportContent += `|-------------|---------------|-------------------|\n`;
+
+  sortedSummary.forEach(([maintainer, counts]) => {
+      reportContent += `| ${maintainer} | ${counts.pluginCount} | ${counts.compatibleCount} |\n`;
+  });
+
+  return reportContent;
+}
+
 
 // Main function to read data and generate Markdown
 async function readAndGenerateMarkdown() {
@@ -86,13 +200,26 @@ async function readAndGenerateMarkdown() {
   const markdownContent = generateMarkdown(plugins);
 
   // Write to a Markdown file
-  fs.writeFileSync('homebridge_plugins.md', markdownContent);
+  fs.writeFileSync('../homebridge_plugins.md', markdownContent);
   console.log('Markdown file created: homebridge_plugins.md');
 
   // Generate summary report
   const summaryReport = generateSummaryReport(plugins);
-  fs.writeFileSync('homebridge_plugins_summary.md', summaryReport);
+  fs.writeFileSync('../homebridge_plugins_summary.md', summaryReport);
   console.log('Summary report created: homebridge_plugins_summary.md');
+
+  // Generate summary reports
+  const summaryReportByMaintainer = generateSummaryReportByMaintainer(plugins);
+  fs.writeFileSync('../homebridge_plugins_summary.md', summaryReportByMaintainer);
+  console.log('Summary report by maintainer created: homebridge_plugins_summary.md');
+
+  const summaryReportByPluginCount = generateSummaryReportByPluginCount(plugins);
+  fs.writeFileSync('../homebridge_plugins_summary_by_plugin_count.md', summaryReportByPluginCount);
+  console.log('Summary report by plugin count created: homebridge_plugins_summary_by_plugin_count.md');
+
+  const summaryReportByCompatibleCount = generateSummaryReportByCompatibleCount(plugins);
+  fs.writeFileSync('../homebridge_plugins_summary_by_compatible_count.md', summaryReportByCompatibleCount);
+  console.log('Summary report by compatible count created: homebridge_plugins_summary_by_compatible_count.md');
 }
 
 readAndGenerateMarkdown();

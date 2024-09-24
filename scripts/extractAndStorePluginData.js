@@ -95,7 +95,7 @@ async function extractAndStoreData() {
   }
 
   // Write the collected data to a JSON file
-  fs.writeFileSync('homebridge_plugins.json', JSON.stringify(pluginsWithDetails, null, 2));
+  fs.writeFileSync('../homebridge_plugins.json', JSON.stringify(pluginsWithDetails, null, 2));
   console.log(`Data extraction complete. Saved details for ${pluginsWithDetails.length} plugins to homebridge_plugins.json`);
 }
 
