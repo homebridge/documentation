@@ -7,7 +7,7 @@ import fs from 'fs';
 // const HOMEBRIDGE_VERSION_CHECK = "2.0.0";
 // const NODE_VERSION_CHECK = "14.0.0"; // Adjust this as needed for your Node.js version
 
-const TESTING_LIMIT = 5000; // Set limit to 100 plugins for initial extraction
+const TESTING_LIMIT = 10; // Set limit to 100 plugins for initial extraction
 
 // Fetch list of homebridge plugins with pagination
 async function getHomebridgePlugins() {
@@ -62,6 +62,10 @@ async function fetchPackageDetails(packageName) {
     const engines = versionData.engines || {};
     const created = data.time.created;
     const lastUpdated = data.time.modified;
+    // Fetch download stats
+    const downloadStatsUrl = `https://api.npmjs.org/downloads/point/last-week/${packageName}`;
+    const downloadStatsResponse = await fetch(downloadStatsUrl);
+    const downloadStats = await downloadStatsResponse.json();
 
     return {
       name: packageName,
@@ -71,6 +75,7 @@ async function fetchPackageDetails(packageName) {
       engines,
       created,
       lastUpdated,
+      downloads: downloadStats.downloads || 0, // Include downloads
     };
 
   } catch (error) {
