@@ -1,5 +1,5 @@
-# Final Summary Report
+# Homebridge 2.0 Ready Report
 
-| Total Plugins | Compatible Plugins |
+| Total Plugins | Homebridge 2.0 Ready |
 |----------------|--------------------|
 | 4476 | 130 |

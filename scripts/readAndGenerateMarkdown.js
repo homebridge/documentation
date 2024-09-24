@@ -201,8 +201,8 @@ function generateFinalSummaryReport(plugins) {
       }
   });
 
-  let reportContent = `# Final Summary Report\n\n`;
-  reportContent += `| Total Plugins | Compatible Plugins |\n`;
+  let reportContent = `# Homebridge 2.0 Ready Report\n\n`;
+  reportContent += `| Total Plugins | Homebridge 2.0 Ready |\n`;
   reportContent += `|----------------|--------------------|\n`;
   reportContent += `| ${totalPlugins} | ${compatibleCount} |\n`;
 
