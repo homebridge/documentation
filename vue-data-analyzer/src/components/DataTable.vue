@@ -193,7 +193,14 @@ export default {
     isHomebridgeCompatible(plugin) {
       const hbEngines = plugin.engines?.homebridge?.split('||').map((x) => x.trim()) || [];
       return hbEngines.some((x) => (x.startsWith('^2') || x.startsWith('>=2'))) ? 'supported' : 'not ready';
+    },
+    getSortValue(plugin) {
+    // Get the value based on the sortKey
+    if (this.sortKey === 'downloads') {
+      return plugin.downloads || 0; // Treat undefined as 0
     }
+    return plugin[this.sortKey] || plugin.engines[this.sortKey.split('.')[1]] || ""; // Handle other keys
+  },
   }
 };
 </script>
