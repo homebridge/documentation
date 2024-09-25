@@ -21,36 +21,34 @@ function formatDate(dateString) {
 function isHomebridgeCompatible(plugin) {
   const hbEngines = plugin.engines?.homebridge?.split('||').map((x) => x.trim()) || [];
   let isHomebridgeCompatible = 'not ready';
-  isHomebridgeCompatible = hbEngines.some((x) => (x.startsWith('^2') || x.startsWith('>=2'))) ? 'supported' : isHomebridgeCompatible
+  isHomebridgeCompatible = hbEngines.some((x) => (x.startsWith('^2') || x.startsWith('>=2'))) ? 'supported' : isHomebridgeCompatible;
   return isHomebridgeCompatible;
 }
 
-// Read the JSON file and generate Markdown content
+// Function to generate Markdown for the plugins list, including downloads
 function generateMarkdown(plugins) {
   let markdownContent = `# Homebridge Plugins List\n\n`;
-  markdownContent += `| Name | Description | Version | owner | Homebridge Version | Node Version | Homebridge 2.0 Ready |  Created | Last Updated |\n`;
-  markdownContent += `|------|-------------|---------|-------------|---------------------|---------------|------------------|---------|--------------|\n`;
+  markdownContent += `| Name | Description | Version | owner | Homebridge Version | Node Version | Homebridge 2.0 Ready | Downloads | Created | Last Updated |\n`;
+  markdownContent += `|------|-------------|---------|-------------|---------------------|---------------|------------------|-----------|---------|--------------|\n`;
 
   plugins.forEach(plugin => {
     const pluginLink = `https://www.npmjs.com/package/${plugin.name}`;
 
     const homebridgeVersion = plugin.engines.homebridge || "N/A";
     const nodeVersion = plugin.engines.node || "N/A";
+    const downloads = plugin.downloads || "N/A"; // Include downloads
 
-    // const homebridgeCompatible = semver.gte(homebridgeVersion, HOMEBRIDGE_VERSION_CHECK);
-    // const nodeCompatible = semver.gte(nodeVersion, NODE_VERSION_CHECK);
-
-    markdownContent += `| [${plugin.name}](${pluginLink}) | ${plugin.description} | ${plugin.version} | ${plugin.owner} | ${escapePipe(homebridgeVersion)} | ${escapePipe(nodeVersion)} | ${isHomebridgeCompatible(plugin)} |  ${formatDate(plugin.created)} | ${formatDate(plugin.lastUpdated)} |\n`;
+    markdownContent += `| [${plugin.name}](${pluginLink}) | ${plugin.description} | ${plugin.version} | ${plugin.owner} | ${escapePipe(homebridgeVersion)} | ${escapePipe(nodeVersion)} | ${isHomebridgeCompatible(plugin)} | ${downloads} | ${formatDate(plugin.created)} | ${formatDate(plugin.lastUpdated)} |\n`;
   });
 
   return markdownContent;
 }
 
+// Function to create a summary report for the plugins by owner
 function createSummary(plugins) {
   const summary = {};
 
   plugins.forEach(plugin => {
-
     if (!summary[plugin.owner]) {
       summary[plugin.owner] = {
         pluginCount: 0,
@@ -62,33 +60,13 @@ function createSummary(plugins) {
     if (isHomebridgeCompatible(plugin) === 'supported') {
       summary[plugin.owner].compatibleCount += 1;
     }
-
   });
+
   return summary;
-}
-
-// Generate summary report by owner
-function generateSummaryReport(plugins) {
-  // Create an array from the summary object and sort by owner name
-  const sortedSummary = Object.entries(createSummary(plugins)).sort(([ownerA], [ownerB]) => {
-    return ownerA.localeCompare(ownerB);
-  });
-
-  let reportContent = `# Summary Report by owner\n\n`;
-  reportContent += `| owner | Total Plugins | Homebridge 2.0 Ready |\n`;
-  reportContent += `|-------------|---------------|-------------------|\n`;
-
-  sortedSummary.forEach(([owner, counts]) => {
-    reportContent += `| ${owner} | ${counts.pluginCount} | ${counts.compatibleCount} |\n`;
-  });
-
-  return reportContent;
 }
 
 // Generate summary report sorted by owner
 function generateSummaryReportByOwner(plugins) {
-
-  // Create an array from the summary object and sort by owner name
   const sortedSummary = Object.entries(createSummary(plugins)).sort(([ownerA], [ownerB]) => {
     return ownerA.localeCompare(ownerB);
   });
@@ -106,8 +84,6 @@ function generateSummaryReportByOwner(plugins) {
 
 // Generate summary report sorted by plugin count
 function generateSummaryReportByPluginCount(plugins) {
-
-  // Create an array from the summary object and sort by plugin count (descending)
   const sortedSummary = Object.entries(createSummary(plugins)).sort(([, countsA], [, countsB]) => {
     return countsB.pluginCount - countsA.pluginCount;
   });
@@ -123,10 +99,8 @@ function generateSummaryReportByPluginCount(plugins) {
   return reportContent;
 }
 
-// Generate summary report sorted by compatible count
+// Generate summary report sorted by Homebridge 2.0 ready count
 function generateSummaryReportByCompatibleCount(plugins) {
-
-  // Create an array from the summary object and sort by compatible count (descending)
   const sortedSummary = Object.entries(createSummary(plugins)).sort(([, countsA], [, countsB]) => {
     return countsB.compatibleCount - countsA.compatibleCount;
   });
@@ -142,12 +116,12 @@ function generateSummaryReportByCompatibleCount(plugins) {
   return reportContent;
 }
 
+// Generate a final summary report for Homebridge 2.0 readiness
 function generateFinalSummaryReport(plugins) {
   const totalPlugins = plugins.length;
   let compatibleCount = 0;
 
   plugins.forEach(plugin => {
-    const homebridgeVersion = plugin.engines.homebridge || "0.0.0";
     if (isHomebridgeCompatible(plugin) === 'supported') {
       compatibleCount += 1;
     }
@@ -161,38 +135,32 @@ function generateFinalSummaryReport(plugins) {
   return reportContent;
 }
 
-
-// Main function to read data and generate Markdown
+// Main function to read data, generate markdown, and summary reports
 async function readAndGenerateMarkdown() {
   const jsonData = fs.readFileSync('../homebridge_plugins.json', 'utf8');
   const plugins = JSON.parse(jsonData);
 
-  // Generate Markdown content
+  // Generate the main markdown report with downloads
   const markdownContent = generateMarkdown(plugins);
-
-  // Write to a Markdown file
   fs.writeFileSync('../homebridge_plugins.md', markdownContent);
-  console.log('Markdown file created: homebridge_plugins.md');
+  console.log('Markdown file with downloads created: homebridge_plugins.md');
 
-  // Generate summary report
-  const summaryReport = generateSummaryReport(plugins);
-  fs.writeFileSync('../homebridge_plugins_summary.md', summaryReport);
-  console.log('Summary report created: homebridge_plugins_summary.md');
+  // Generate the summary report by owner
+  const summaryReportByOwner = generateSummaryReportByOwner(plugins);
+  fs.writeFileSync('../homebridge_plugins_summary_by_owner.md', summaryReportByOwner);
+  console.log('Summary report by owner created: homebridge_plugins_summary_by_owner.md');
 
-  // Generate summary reports
-  const summaryReportByowner = generateSummaryReportByOwner(plugins);
-  fs.writeFileSync('../homebridge_plugins_summary.md', summaryReportByowner);
-  console.log('Summary report by owner created: homebridge_plugins_summary.md');
-
+  // Generate the summary report by plugin count
   const summaryReportByPluginCount = generateSummaryReportByPluginCount(plugins);
   fs.writeFileSync('../homebridge_plugins_summary_by_plugin_count.md', summaryReportByPluginCount);
   console.log('Summary report by plugin count created: homebridge_plugins_summary_by_plugin_count.md');
 
+  // Generate the summary report by Homebridge 2.0 compatibility count
   const summaryReportByCompatibleCount = generateSummaryReportByCompatibleCount(plugins);
   fs.writeFileSync('../homebridge_plugins_summary_by_compatible_count.md', summaryReportByCompatibleCount);
   console.log('Summary report by compatible count created: homebridge_plugins_summary_by_compatible_count.md');
 
-  // Generate final summary report
+  // Generate the final summary report
   const finalSummaryReport = generateFinalSummaryReport(plugins);
   fs.writeFileSync('../homebridge_plugins_final_summary.md', finalSummaryReport);
   console.log('Final summary report created: homebridge_plugins_final_summary.md');
