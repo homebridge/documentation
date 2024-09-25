@@ -2,12 +2,19 @@
 
 import fetch from 'node-fetch';
 import fs from 'fs';
+import pLimit from 'p-limit';
 
-// Declare constants for version checks
+// Constants for version checks
 // const HOMEBRIDGE_VERSION_CHECK = "2.0.0";
-// const NODE_VERSION_CHECK = "14.0.0"; // Adjust this as needed for your Node.js version
+// const NODE_VERSION_CHECK = "14.0.0"; // Adjust as needed
 
-const TESTING_LIMIT = 10; // Set limit to 100 plugins for initial extraction
+console.log('This runs for over a few mintes, so no need to grab some coffee...');
+
+// Set limit to 100 plugins for testing extraction, and 5000 for final extraction
+const TESTING_LIMIT = 5000; // Adjust the limit for final run
+
+// Limit concurrent fetches to 10 at a time
+const limit = pLimit(10);
 
 // Fetch list of homebridge plugins with pagination
 async function getHomebridgePlugins() {
@@ -26,7 +33,7 @@ async function getHomebridgePlugins() {
       // Concatenate current page data to allData
       allData = allData.concat(data.objects);
 
-      // Check if we fetched less than resultsPerPage or hit the limit for testing
+      // Stop fetching if less than a full page of results is returned or the limit is reached
       if (data.objects.length < resultsPerPage || allData.length >= TESTING_LIMIT) {
         keepFetching = false;
       } else {
@@ -35,24 +42,29 @@ async function getHomebridgePlugins() {
     }
 
     console.log(`Fetched data for ${allData.length} plugins`);
-    // Return the limited list of package names (up to TESTING_LIMIT)
     return allData.slice(0, TESTING_LIMIT).map(pkg => pkg.package.name);
 
   } catch (error) {
-    console.error('Error fetching data from npm:', error);
+    console.error('Error fetching plugin list from npm:', error);
     return [];
   }
 }
 
-// Fetch the full package metadata to extract the required fields
+// Fetch the full package metadata and download stats
 async function fetchPackageDetails(packageName) {
+  console.log(`Fetching package details data for ${packageName}...`);
   const url = `https://registry.npmjs.org/${packageName}`;
-  console.log(`Fetching data for ${packageName}...`);
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
+  const downloadStatsUrl = `https://api.npmjs.org/downloads/point/last-week/${packageName}`;
 
-    // Extract relevant fields from the latest version
+  try {
+    const [response, downloadStatsResponse] = await Promise.all([
+      fetch(url),
+      fetch(downloadStatsUrl),
+    ]);
+
+    const data = await response.json();
+    const downloadStats = await downloadStatsResponse.json();
+
     const latestVersion = data['dist-tags'].latest;
     const versionData = data.versions[latestVersion];
 
@@ -62,10 +74,10 @@ async function fetchPackageDetails(packageName) {
     const engines = versionData.engines || {};
     const created = data.time.created;
     const lastUpdated = data.time.modified;
-    // Fetch download stats
-    const downloadStatsUrl = `https://api.npmjs.org/downloads/point/last-week/${packageName}`;
-    const downloadStatsResponse = await fetch(downloadStatsUrl);
-    const downloadStats = await downloadStatsResponse.json();
+    const author = versionData.author ? versionData.author.name : 'Not supplied';
+    const deprecated = versionData.deprecated || false;
+    const displayName = versionData.displayName || packageName;
+    const owner = ( author === 'Not supplied' ) ? maintainers.join(', ') : author;
 
     return {
       name: packageName,
@@ -75,6 +87,10 @@ async function fetchPackageDetails(packageName) {
       engines,
       created,
       lastUpdated,
+      author,
+      deprecated,
+      displayName,
+      owner,
       downloads: downloadStats.downloads || 0, // Include downloads
     };
 
@@ -87,12 +103,13 @@ async function fetchPackageDetails(packageName) {
 // Main function to extract and store plugin data
 async function extractAndStoreData() {
   const allPluginNames = await getHomebridgePlugins();
-  const pluginsWithDetails = [];
 
-  for (const packageName of allPluginNames) {
-    const packageData = await fetchPackageDetails(packageName);
-    pluginsWithDetails.push(packageData);
-  }
+  // Limit concurrent requests with pLimit
+  const pluginsWithDetails = await Promise.all(
+    allPluginNames.map(packageName => 
+      limit(() => fetchPackageDetails(packageName))
+    )
+  );
 
   // Write the collected data to a JSON file
   fs.writeFileSync('../homebridge_plugins.json', JSON.stringify(pluginsWithDetails, null, 2));
