@@ -11,7 +11,7 @@ import pLimit from 'p-limit';
 console.log('This runs for over a few minutes, so no need to grab some coffee...');
 
 // Set limit to 100 plugins for testing extraction, and 5000 for final extraction
-const TESTING_LIMIT = 100; // Adjust the limit for final run
+const TESTING_LIMIT = 5000; // Adjust the limit for final run
 
 // Limit concurrent fetches to 10 at a time
 const limit = pLimit(10);
