@@ -54,47 +54,48 @@
     <div class="summary">
       <p>Results Found: {{ filteredPlugins.length }}</p>
     </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <!-- Existing columns -->
+            <th :class="getHeaderClass('name')" @click="sortTable('name')">Name</th>
+            <th :class="getHeaderClass('description')" @click="sortTable('description')">Description</th>
+            <th :class="getHeaderClass('version')" @click="sortTable('version')">Version</th>
+            <th :class="getHeaderClass('owner')" @click="sortTable('owner')">Owner</th>
+            <th :class="getHeaderClass('downloads')" @click="sortTable('downloads')">Downloads</th>
+            <th :class="getHeaderClass('created')" @click="sortTable('created')">Created</th>
+            <th :class="getHeaderClass('lastUpdated')" @click="sortTable('lastUpdated')">Last Updated</th>
+            <th :class="getHeaderClass('engines.node')" @click="sortTable('engines.node')">Engine Node</th>
+            <th :class="getHeaderClass('engines.homebridge')" @click="sortTable('engines.homebridge')">Engine Homebridge</th>
+            <th :class="getHeaderClass('homebridgeCompatibility')" @click="sortTable('homebridgeCompatibility')">Homebridge 2.0 Ready</th>
+            <th :class="getHeaderClass('latestRelease')" @click="sortTable('latestRelease')">Latest Release</th>
 
-    <table>
-      <thead>
-        <tr>
-          <!-- Existing columns -->
-          <th :class="getHeaderClass('name')" @click="sortTable('name')">Name</th>
-          <th :class="getHeaderClass('description')" @click="sortTable('description')">Description</th>
-          <th :class="getHeaderClass('version')" @click="sortTable('version')">Version</th>
-          <th :class="getHeaderClass('owner')" @click="sortTable('owner')">Owner</th>
-          <th :class="getHeaderClass('downloads')" @click="sortTable('downloads')">Downloads</th>
-          <th :class="getHeaderClass('created')" @click="sortTable('created')">Created</th>
-          <th :class="getHeaderClass('lastUpdated')" @click="sortTable('lastUpdated')">Last Updated</th>
-          <th :class="getHeaderClass('engines.node')" @click="sortTable('engines.node')">Engine Node</th>
-          <th :class="getHeaderClass('engines.homebridge')" @click="sortTable('engines.homebridge')">Engine Homebridge</th>
-          <th :class="getHeaderClass('homebridgeCompatibility')" @click="sortTable('homebridgeCompatibility')">Homebridge 2.0 Ready</th>
-          <th :class="getHeaderClass('latestRelease')" @click="sortTable('latestRelease')">Latest Release</th>
+            <!-- New "Verified" column -->
+            <th :class="getHeaderClass('verified')" @click="sortTable('verified')">Verified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="plugin in sortedPlugins" :key="plugin.name" @click="selectPlugin(plugin)">
+            <!-- Existing columns -->
+            <td><a :href="'https://www.npmjs.com/package/' + plugin.name" target="_blank">{{ plugin.name }}</a></td>
+            <td>{{ plugin.description }}</td>
+            <td>{{ plugin.version }}</td>
+            <td>{{ plugin.owner }}</td>
+            <td>{{ plugin.downloads }}</td>
+            <td>{{ new Date(plugin.created).toLocaleDateString() }}</td>
+            <td>{{ new Date(plugin.lastUpdated).toLocaleDateString() }}</td>
+            <td>{{ plugin.engines.node }}</td>
+            <td>{{ plugin.engines.homebridge }}</td>
+            <td>{{ isHomebridgeCompatible(plugin) }}</td>
+            <td>{{ plugin.latestRelease }}</td>
 
-          <!-- New "Verified" column -->
-          <th :class="getHeaderClass('verified')" @click="sortTable('verified')">Verified</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="plugin in sortedPlugins" :key="plugin.name" @click="selectPlugin(plugin)">
-          <!-- Existing columns -->
-          <td><a :href="'https://www.npmjs.com/package/' + plugin.name" target="_blank">{{ plugin.name }}</a></td>
-          <td>{{ plugin.description }}</td>
-          <td>{{ plugin.version }}</td>
-          <td>{{ plugin.owner }}</td>
-          <td>{{ plugin.downloads }}</td>
-          <td>{{ new Date(plugin.created).toLocaleDateString() }}</td>
-          <td>{{ new Date(plugin.lastUpdated).toLocaleDateString() }}</td>
-          <td>{{ plugin.engines.node }}</td>
-          <td>{{ plugin.engines.homebridge }}</td>
-          <td>{{ isHomebridgeCompatible(plugin) }}</td>
-          <td>{{ plugin.latestRelease }}</td>
-
-          <!-- New "Verified" column -->
-          <td>{{ plugin.verified ? 'Verified' : 'Not Verified' }}</td>
-        </tr>
-      </tbody>
-    </table>
+            <!-- New "Verified" column -->
+            <td>{{ plugin.verified ? 'Verified' : 'Not Verified' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -241,56 +242,60 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100vw;
+  align-items: center; /* Centers the container content horizontally */
+  margin: 0 auto;
+  width: 100%; /* Ensures the container takes the full width */
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 20px;
+}
+
+.table-container {
+  width: 100%; /* Full width */
+  display: flex; /* Flex display to help center contents */
+  justify-content: center; /* Centers the table */
 }
 
 table {
-  width: 100%;
-  max-width: 1200px;
+  width: 80%; /* Adjust this width as needed */
+  max-width: 100%; /* Ensures it does not exceed container width */
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin: 20px 0; /* Add some margin for spacing */
+}
+
+table, th, td {
+  border: 1px solid black;
 }
 
 th, td {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 8px;
   text-align: left;
-}
-
-th {
   cursor: pointer;
 }
 
-.active {
-  background-color: #f0f0f0;
+th:hover {
+  background-color: #f2f2f2;
 }
 
-.asc::after {
-  content: " ▲";
-}
-
-.desc::after {
-  content: " ▼";
+input, select {
+  margin: 5px 10px 20px 0;
 }
 
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 1200px;
+  justify-content: center; /* Centers the filters horizontally */
 }
 
 .summary {
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 1200px;
+  margin: 10px 0;
+}
+
+/* Optional: Add some styles for responsiveness */
+@media (max-width: 600px) {
+  table {
+    width: 100%; /* Full width on smaller screens */
+  }
 }
 </style>
