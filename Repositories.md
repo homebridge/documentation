@@ -25,7 +25,7 @@
 | [put](https://github.com/homebridge/put) |
 | [node-pty-prebuilt-multiarch](https://github.com/homebridge/node-pty-prebuilt-multiarch)| | [Build Instructions](https://github.com/homebridge/node-pty-prebuilt-multiarch#build--package)
 | [nssm](https://github.com/homebridge/nssm) ||
-| [ws-connect](https://github.com/homebridge/ws-connect) | | Releases against a beta branch are published automatically<>For a prod release, manually run the github action `Build, Publish and Release` |
+| [ws-connect](https://github.com/homebridge/ws-connect) | | **New Beta Release**<BR>1 - Push to `beta-*.*.*` branch will generate new npm version<BR>For a production release, manually run the github action `Build, Publish and Release`. A Guthub and NPM release will be created. |
 
 # **Examples and Templates**
 
