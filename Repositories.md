@@ -25,6 +25,7 @@
 | [put](https://github.com/homebridge/put) |
 | [node-pty-prebuilt-multiarch](https://github.com/homebridge/node-pty-prebuilt-multiarch)| | [Build Instructions](https://github.com/homebridge/node-pty-prebuilt-multiarch#build--package)
 | [nssm](https://github.com/homebridge/nssm) ||
+| [ws-connect](https://github.com/homebridge/ws-connect) | | Releases against a beta branch are published automatically<>For a prod release, manually run the github action `Build, Publish and Release` |
 
 # **Examples and Templates**
 
@@ -43,6 +44,7 @@
 | [homebridge.github.io](https://github.com/homebridge/homebridge.github.io) |
 | [branding](https://github.com/homebridge/branding) |
 | [documentation](https://github.com/homebridge/documentation) |
+| [Analytics](https://github.com/homebridge/analytics) | NorthernMan54 | The website automatically updates overnight on a daily basis via the github action `Update Homebridge Analytics` or via a manual workflow event|
 
 # Other
 
