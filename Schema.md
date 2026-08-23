@@ -1,3 +1,3 @@
 # Plugin Settings GUI
 
-See https://developers.homebridge.io/#/config-schema
+See https://developers.homebridge.io/#/config-screen/schema

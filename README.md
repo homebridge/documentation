@@ -10,11 +10,11 @@
 
 Full documentation for the Homebridge Plugins Settings GUI schema can be found here:
 
-* [Homebridge Plugin Settings GUI Documentation](https://developers.homebridge.io/#/config-schema)
+* [Homebridge Plugin Settings GUI Documentation](https://developers.homebridge.io/#/config-screen/schema)
 
 The Verified By Homebridge program allows plugin developers to get their plugins reviewed and endorsed by the Homebridge project team:
 
-* [Verified By Homebridge](https://github.com/homebridge/verified)
+* [Verified By Homebridge](https://github.com/homebridge/plugins)
 
 ### Community
 

@@ -50,7 +50,7 @@
 
 | Repository | Lead Collaborator | Publish Instructions |
 |------------|-------------|-------------|
-| [verified](https://github.com/homebridge/verified) |
+| [plugins](https://github.com/homebridge/plugins) |
 | [plugin-repo](https://github.com/homebridge/plugin-repo) |
 | [mdns-diagnostics](https://github.com/homebridge/mdns-diagnostics) |
 | [unmaintained-plugins](https://github.com/homebridge/unmaintained-plugins) |
